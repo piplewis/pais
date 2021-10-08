@@ -13,7 +13,7 @@ cat /etc/hosts
 echo "Root password:"
 passwd
 echo "Installing base packages"
-pacman -S --noconfirm base linux-lts git linux-firmware neofetch vim grub efibootmgr networkmanager network-manager-applet reflector base-devel linux-lts-headers os-prober terminus-font openssh bash-completion dnsutils sudo intel-ucode xorg xorg-server xorg-xinit iwd firefox alsa-utils alsa-plugins pulseaudio pulseaudio-alsa chromium
+pacman -S --noconfirm linux-lts git linux-firmware neofetch vim grub efibootmgr networkmanager network-manager-applet reflector base-devel linux-lts-headers os-prober terminus-font openssh bash-completion dnsutils sudo intel-ucode xorg xorg-server xorg-xinit iwd firefox alsa-utils alsa-plugins pulseaudio pulseaudio-alsa chromium
 reflector -c "GB" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 #gpu drivers
 # pacman -S  xf86-video-amdgpu
