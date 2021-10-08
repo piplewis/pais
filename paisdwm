@@ -37,18 +37,3 @@ echo "picom -f &" >>/home/doc10/.xprofile
 cat /home/doc10/.xprofile
 systemctl enable lightdm
 systemctl enable bluetooth
-
-    © 2021 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Docs
-
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
-
