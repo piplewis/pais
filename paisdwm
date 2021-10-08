@@ -1,24 +1,24 @@
 #!/bin/bash
 #MUST RUN AS ROOT
-cd
+cd ~/.config
 git clone https://git.suckless.org/dwm/
 git clone https://git.suckless.org/dwmstatus
 git clone https://git.suckless.org/st
 git clone https://git.suckless.org/dmenu
 pacman -Syu
-pacman -S xorg xorg-server xterm firefox nitrogen picom lightdm  lightdm-gtk-greeter lightdm-gtk-greeter-settings archlinux-wallpaper pcmanfm avahi xdg-user-dirs xdg-utils gedit bluez bluez-utils alsa-utils pipewire pipewire-alsa pipewire-pulse pipewire-jack sof-firmware
+pacman -S nitrogen picom lightdm  lightdm-gtk-greeter lightdm-gtk-greeter-settings archlinux-wallpaper pcmanfm avahi xdg-user-dirs xdg-utils gedit bluez bluez-utils sof-firmware
 cd dwm
 make
 make install
-cd 
+cd ..
 cd dwmstatus
 make
 make install
-cd
+cd ..
 cd st
 make
 make install
-cd
+cd ..
 cd dmenu
 make
 make install
@@ -31,9 +31,9 @@ echo "Comment=Dynamyc window manager" >> /usr/share/xsessions/dwm.desktop
 echo "Exec=dwm" >> /usr/share/xsessions/dwm.desktop
 echo "Icon=dwm" >> /usr/share/xsessions/dwm.desktop
 echo "Type=XSession" >> /usr/share/xsessions/dwm.desktop
-#change doc10 to your username
-echo "nitrogen --restore &" >> /home/doc10/.xprofile
-echo "picom -f &" >>/home/doc10/.xprofile
-cat /home/doc10/.xprofile
+#change piplewis to your username
+echo "nitrogen --restore &" >> /home/piplewis/.xprofile
+echo "picom -f &" >>/home/piplewis/.xprofile
+cat /home/piplewis/.xprofile
 systemctl enable lightdm
 systemctl enable bluetooth
