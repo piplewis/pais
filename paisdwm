@@ -1,6 +1,6 @@
 #!/bin/bash
 #MUST RUN AS ROOT
-cd ~/.config
+cd /home/piplewis/.config
 git clone https://git.suckless.org/dwm/
 git clone https://git.suckless.org/dwmstatus
 git clone https://git.suckless.org/st
