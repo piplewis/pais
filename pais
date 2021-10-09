@@ -3,7 +3,7 @@ ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock --systohc
 locale-gen
 echo "LANG=en_GB.UTF-8" >> /etc/locale.conf
-echo "LANG=en_GB.UTF-8" >> /etc/locale.gen
+echo "en_GB.UTF-8" >> /etc/locale.gen
 export LANG=en_GB.UTF-8
 echo "KEYMAP=uk" >> /etc/vconsole.conf
 echo "Configuring network"
@@ -19,7 +19,7 @@ pacman -S --noconfirm linux-lts git linux-firmware neofetch vim grub efibootmgr 
 reflector -c "GB" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 #gpu drivers
 # pacman -S  xf86-video-amdgpu
-pacman -S  nvidia nvidia-utils nvidia-settings
+pacman -S  --noconfirm nvidia nvidia-utils nvidia-settings
 echo "Configuring grub bootloader"
 #uefi
 mkdir /boot/efi
