@@ -17,7 +17,7 @@ passwd
 echo "Installing main packages"
 pacman -S --noconfirm linux-lts linux-firmware grub efibootmgr base-devel linux-lts-headers os-prober terminus-font openssh bash-completion sudo intel-ucode 
 #Extras
-pacman -S neofetch vim reflector
+pacman -S neofetch vim reflector mpv youtube-dl
 # Browsers
 pacman -S firefox chromium
 # Xorg
