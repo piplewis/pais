@@ -14,8 +14,18 @@ echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
 cat /etc/hosts
 echo "Root password:"
 passwd
-echo "Installing base packages"
-pacman -S --noconfirm linux-lts git linux-firmware neofetch vim grub efibootmgr networkmanager network-manager-applet reflector base-devel linux-lts-headers os-prober terminus-font openssh bash-completion dnsutils sudo intel-ucode xorg xorg-server xorg-xinit iwd firefox alsa-utils alsa-plugins pulseaudio pulseaudio-alsa chromium
+echo "Installing main packages"
+pacman -S --noconfirm linux-lts linux-firmware grub efibootmgr base-devel linux-lts-headers os-prober terminus-font openssh bash-completion sudo intel-ucode 
+#Extras
+pacman -S neofetch vim reflector
+# Browsers
+pacman -S firefox chromium
+# Xorg
+pacman -S --noconfirm xorg xorg-server xorg-xinit
+# Network
+pacman -S --noconfirm networkmanager network-manager-applet dnsutils
+# Sound
+pacman -S --noconfirm pipewire gst-plugin-pipewire pipewire-alsa pipewire-jack pipewire-media-session pipewire-pulse pipewire-zeroconf --noconfirm
 reflector -c "GB" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 #gpu drivers
 # pacman -S  xf86-video-amdgpu
