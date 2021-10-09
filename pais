@@ -2,7 +2,7 @@
 ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
 hwclock --systohc
 locale-gen
-echo "LANG=en_UK.UTF-8" >> /etc/locale.conf
+echo "LANG=en_GB.UTF-8" >> /etc/locale.conf
 echo "KEYMAP=uk" >> /etc/vconsole.conf
 echo "Configuring network"
 echo "arch" >> /etc/hostname
