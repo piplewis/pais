@@ -38,4 +38,3 @@ echo "picom -f &" >>/home/piplewis/.xprofile
 cat /home/piplewis/.xprofile
 systemctl enable lightdm
 systemctl enable bluetooth
-echo "done"
