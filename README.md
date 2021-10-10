@@ -1,5 +1,5 @@
 # pais
-Pip's Arch install script - work in porogress.
+Pip's Arch install script - work in progress.
 Does what I need, edit as you feel.
 
 Forked Doc10's code and added what I needed too.
@@ -16,7 +16,7 @@ Boot off installation media, partition drive, connect to internet.
 > 
 > genfstab -U /mnt >> /mnt/etc/fstab
 
-Put this together on a Windows machine unfotunately so after using git clone I use dos2unix to convert, easily done. I will get this sorted though.
+Put this together on a Windows machine unfortunately so after using git clone I use dos2unix to convert, easily done. I will get this sorted though.
 
 > git clone https:/github.com/piplewis/pais
 > 
