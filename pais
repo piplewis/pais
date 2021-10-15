@@ -15,7 +15,7 @@ cat /etc/hosts
 echo "Root password:"
 passwd
 echo "Installing main packages"
-pacman -S --noconfirm linux-lts linux-firmware grub efibootmgr base-devel linux-lts-headers xdg-user-dirs os-prober terminus-font openssh bash-completion sudo intel-ucode 
+pacman -S --noconfirm linux-lts linux-lts-headers linux-firmware intel-ucode sudo vim efibootmgr base-devel xdg-user-dirs os-prober terminus-font openssh bash-completion sudo 
 #Extras
 pacman -S neofetch vim reflector mpv youtube-dl
 # Browsers
