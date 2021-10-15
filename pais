@@ -42,7 +42,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 echo "Configuring base services"
 systemctl enable NetworkManager
 systemctl enable sshd
-systemctl enable iwd
 echo "Creating a new user"
 useradd -m piplewis
 echo "Password for piplewis:"
