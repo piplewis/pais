@@ -13,7 +13,7 @@ Clone this repo
 
 Change my username (piplewis) to yours, edit the bootloader section for either bios or uefi (I use bios for testing on a virtual machine and uefi on my production box.)
 
-Forked Doc10's code and added what I needed.
+Forked Doc10's code and added what I needed https://github.com/document10/scriptsrep.
 
 Put this together on a Windows machine unfortunately so after using git clone I use dos2unix to convert, easily done. I will get this sorted though.
 
