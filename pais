@@ -48,7 +48,7 @@ useradd -m piplewis
 echo "Password for piplewis:"
 passwd piplewis
 echo "piplewis ALL=(ALL) ALL" >> /etc/sudoers.d/piplewis
-echo "piplewis now has sudo privilleges."
+echo "piplewis now has sudo privilleges.."
 echo "Final configuration"
 mkinitcpio -P
 echo "Installation complete.."
