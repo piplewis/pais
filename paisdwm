@@ -35,5 +35,6 @@ echo "Type=XSession" >> /usr/share/xsessions/dwm.desktop
 echo "nitrogen --restore &" >> /home/piplewis/.xprofile
 echo "picom -f &" >>/home/piplewis/.xprofile
 cat /home/piplewis/.xprofile
+localectl set-x11-keymap gb
 systemctl enable lightdm
 systemctl enable bluetooth
