@@ -18,12 +18,11 @@ Forked Doc10's code and added what I needed https://github.com/document10/script
 Put this together on a Windows machine unfortunately so after using git clone I use dos2unix to convert, easily done. I will get this sorted though.
 
 The process for me is to boot off arch install media...
-
 loadkeys uk
 mkfs.ext4 /dev/sda2
 iwctl
->>> station wlan0 connect ******
->>> password > ******
+station wlan0 connect ******
+password > ******
 pacman -Syy
 mount /dev/sda2 /mnt
 pacstrap /mnt base vim git
