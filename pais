@@ -23,7 +23,6 @@ sudo pacman -S --noconfirm virtualbox virtualbox-guest-utils
 pacman -S --noconfirm firefox chromium
 # Xorg
 pacman -S --noconfirm xorg xorg-server xorg-xinit
-localectl set-x11-keymap gb
 # Network
 pacman -S --noconfirm networkmanager network-manager-applet dnsutils
 # Sound
