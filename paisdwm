@@ -31,7 +31,7 @@ echo "Comment=Dynamyc window manager" >> /usr/share/xsessions/dwm.desktop
 echo "Exec=dwm" >> /usr/share/xsessions/dwm.desktop
 echo "Icon=dwm" >> /usr/share/xsessions/dwm.desktop
 echo "Type=XSession" >> /usr/share/xsessions/dwm.desktop
-#change piplewis to your username
+#change piplewis to your username.
 echo "nitrogen --restore &" >> /home/piplewis/.xprofile
 echo "picom -f &" >>/home/piplewis/.xprofile
 cat /home/piplewis/.xprofile
