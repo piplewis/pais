@@ -16,11 +16,11 @@ passwd
 echo "Installing main packages"
 pacman -S --noconfirm linux-lts linux-lts-headers linux-firmware intel-ucode grub sudo vim efibootmgr base-devel xdg-user-dirs xdg-utils os-prober terminus-font openssh bash-completion sudo 
 #Extras
-pacman -S --noconfirm neofetch vim reflector mpv youtube-dl
+pacman -S --noconfirm neofetch vim reflector mpv youtube-dl thunar
 # virtual box
 sudo pacman -S --noconfirm virtualbox virtualbox-guest-utils
 # Browsers
-pacman -S --noconfirm firefox chromium
+pacman -S --noconfirm firefox-ublock-origin chromium
 # Xorg
 pacman -S --noconfirm xorg xorg-server xorg-xinit
 # Network
