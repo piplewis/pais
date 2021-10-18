@@ -19,20 +19,20 @@ Put this together on a Windows machine unfortunately so after using git clone I 
 
 The process for me is to boot off arch install media...
 
-> loadkeys uk
-> mkfs.ext4 /dev/sda2
-> iwctl
+loadkeys uk
+mkfs.ext4 /dev/sda2
+iwctl
 >>> station wlan0 connect ******
 >>> password > ******
-> pacman -Syy
-> mount /dev/sda2 /mnt
-> pacstrap /mnt base vim git
-> genfstab -U /mnt >> /mnt/etc/fstab
-> arch-chroot /mnt
-> git clone https://github.com/piplewis/pais
-> chmod +x pais
-> chfmod +x paisdwm
-> ./pais
+pacman -Syy
+mount /dev/sda2 /mnt
+pacstrap /mnt base vim git
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+git clone https://github.com/piplewis/pais
+chmod +x pais
+chfmod +x paisdwm
+./pais
 
 REBOOT after pais script complete
 Log in as new user then run paisdwm as root
