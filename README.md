@@ -15,7 +15,7 @@ Change my username (piplewis) to yours, edit the bootloader section for either b
 
 Forked Doc10's code and added what I needed https://github.com/document10/scriptsrep.
 
-Put this together on a Windows machine unfortunately so after using git clone I use dos2unix to convert, easily done. I will get this sorted though.
+Fixed the line endings so no need for dos2unix :-)
 
 The process for me is to boot off arch install media...
 loadkeys uk
