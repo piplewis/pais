@@ -20,7 +20,7 @@ pacman -S --noconfirm neofetch vim reflector mpv youtube-dl thunar
 # virtual box
 pacman -S --noconfirm virtualbox virtualbox-guest-utils
 # Browsers
-pacman -S --noconfirm firefox ublock-origin chromium
+pacman -S --noconfirm firefox chromium
 # Xorg
 pacman -S --noconfirm xorg xorg-server xorg-xinit
 # Network
