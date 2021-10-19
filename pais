@@ -17,7 +17,7 @@ echo "Installing main packages"S --noconfirm linux-lts linux-lts-headers linux-f
 #Extras
 pacman -S --noconfirm neofetch vim reflector mpv youtube-dl thunar
 # virtual box
-sudo pacman -S --noconfirm virtualbox virtualbox-guest-utils
+pacman -S --noconfirm virtualbox virtualbox-guest-utils
 # Browsers
 pacman -S --noconfirm firefox ublock-origin chromium
 # Xorg
