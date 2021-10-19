@@ -30,7 +30,7 @@ reflector -c "GB" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 #gpu drivers
 # pacman -S  xf86-video-amdgpu
 pacman -S  --noconfirm nvidia nvidia-utils nvidia-settings
-echo "Configuring grub bootloader"
+echo "Configuring grub bootloader."
 #uefi
 # mkdir /boot/efi
 # mount /dev/sda1 /boot/efi
