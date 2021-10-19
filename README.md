@@ -7,11 +7,11 @@ Really only to help me as I often forget to install what is needed to meet my re
 
 Boot off installation media, partition drive, connect to internet.
 
-pacstrap base, linux and git
+pacstrap base, linux, vim and git
 
 Clone this repo
 
-Change my username (piplewis) to yours, edit the bootloader section for either bios or uefi (I use bios for testing on a virtual machine and uefi on my linux box.)
+Change my username (piplewis) to yours, EDIT THE BOOTLOADER SECTION for either bios or uefi (It's currently setup for my uefi box.)
 
 Forked Doc10's code and added what I needed https://github.com/document10/scriptsrep.
 
