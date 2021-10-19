@@ -33,10 +33,10 @@ reflector -c "GB" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 pacman -S  --noconfirm nvidia nvidia-utils nvidia-settings
 echo "Configuring grub bootloader"
 #uefi
-# mkdir /boot/efi
-# mount /dev/sda1 /boot/efi
-# grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
-# grub-mkconfig -o /boot/grub/grub.cfg
+mkdir /boot/efi
+mount /dev/sda1 /boot/efi
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
 #bios
 # grub-install --target=i386-pc /dev/sdX # replace sdX with your disk name, not the partition
 # grub-mkconfig -o /boot/grub/grub.cfg
