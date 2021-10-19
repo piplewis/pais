@@ -30,7 +30,7 @@ reflector -c "GB" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 #gpu drivers
 # pacman -S  xf86-video-amdgpu
 pacman -S  --noconfirm nvidia nvidia-utils nvidia-settings
-echo "Configuring grub bootloader."
+echo "Configuring grub bootloader"
 #uefi
 # mkdir /boot/efi
 # mount /dev/sda1 /boot/efi
@@ -50,4 +50,4 @@ echo "piplewis ALL=(ALL) ALL" >> /etc/sudoers.d/piplewis
 echo "piplewis now has sudo privilleges.."
 echo "Final configuration"
 mkinitcpio -P
-echo "Installation complete.."
+echo "Installation complete, reboot and run paisdwm as root to install DWM"
