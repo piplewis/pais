@@ -11,18 +11,19 @@ pacstrap base, linux and git
 
 Clone this repo
 
-Change my username (piplewis) to yours, edit the bootloader section for either bios or uefi (I use bios for testing on a virtual machine and uefi on my production box.)
+Change my username (piplewis) to yours, edit the bootloader section for either bios or uefi (I use bios for testing on a virtual machine and uefi on my linux box.)
 
 Forked Doc10's code and added what I needed https://github.com/document10/scriptsrep.
 
-Fixed the line endings so no need for dos2unix :-)
+Fixed the line endings issues with my version so no need for dos2unix :-)
 
-The process for me is to boot off arch install media...
+The process for me after booting off arch install media ia as follows...
+
 loadkeys uk
 
-mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/sda2 -- I've already partitioned the drive for uefi. Change this to your partition/setup
 
-iwctl
+iwctl -- wifi setup - may need rfkill unblock all
 
 station wlan0 connect ******
 
