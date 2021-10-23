@@ -27,10 +27,10 @@ pacman -S --noconfirm xorg xorg-server xorg-xinit
 pacman -S --noconfirm networkmanager network-manager-applet dnsutils
 # Sound
 pacman -S --noconfirm alsa-utils pulseaudio
-reflector -c "GB" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 #gpu drivers
 # pacman -S  xf86-video-amdgpu
 pacman -S  --noconfirm nvidia nvidia-utils nvidia-settings
+reflector -c "GB" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 echo "Configuring grub bootloader"
 #uefi
 mkdir /boot/efi
