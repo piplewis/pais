@@ -17,13 +17,15 @@ Forked Doc10's code and added what I needed https://github.com/document10/script
 
 Fixed the line endings issues with my version so no need for dos2unix :-)
 
-The process for me after booting off arch install media ia as follows...
+The process for me after booting off arch install media is as follows...
 
 loadkeys uk
 
 mkfs.ext4 /dev/sda2 -- I've already partitioned the drive for uefi. Change this to your partition/setup
 
-iwctl -- wifi setup - may need rfkill unblock all
+rfkill unblock all
+
+iwctl -- wifi setup 
 
 station wlan0 connect ******
 
@@ -43,7 +45,7 @@ git clone https://github.com/piplewis/pais
 
 chmod +x pais
 
-chfmod +x paisdwm
+chmod +x paisdwm
 
 ./pais
 
