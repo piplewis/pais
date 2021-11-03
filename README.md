@@ -1,7 +1,7 @@
 # pais
 Pip's Arch install script (UK based) - work in progress.
 
-A simple install script to automate an arch and dwm installation with UK keyboard/language settings.
+A simple install script to automate an arch and dwm installation with UK keyboard/language settings and the apps I use.
 
 Really only to help me as I often forget to install what is needed to meet my requirements.
 
