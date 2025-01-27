@@ -43,6 +43,8 @@ arch-chroot /mnt
 
 git clone https://github.com/piplewis/pais
 
+cd pais
+
 chmod +x pais
 
 chmod +x paisdwm
