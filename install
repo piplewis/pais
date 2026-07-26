@@ -1,0 +1,259 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+# ============================================================
+# PAIS v2 - Pip's Arch Installation Script
+# ============================================================
+
+PAIS_VERSION="2.0-dev"
+MOUNTPOINT="/mnt"
+
+die() {
+    echo
+    echo "ERROR: $*" >&2
+    exit 1
+}
+
+info() {
+    echo
+    echo "==> $*"
+}
+
+cleanup() {
+    if mountpoint -q "$MOUNTPOINT"; then
+        umount -R "$MOUNTPOINT" 2>/dev/null || true
+    fi
+}
+
+trap 'echo; echo "PAIS failed on line $LINENO."' ERR
+
+[[ $EUID -eq 0 ]] ||
+    die "PAIS must be run as root."
+
+[[ -d /run/archiso ]] ||
+    die "This development installer must be run from the Arch ISO."
+
+echo
+echo "============================================================"
+echo " PAIS ${PAIS_VERSION}"
+echo " Pip's Arch Installation Script"
+echo "============================================================"
+echo
+
+# ------------------------------------------------------------
+# Network
+# ------------------------------------------------------------
+
+info "Checking internet connection..."
+
+ping -c 1 -W 3 archlinux.org >/dev/null 2>&1 ||
+    die "No internet connection."
+
+echo "Internet connection OK."
+
+# ------------------------------------------------------------
+# Select target disk
+# ------------------------------------------------------------
+
+info "Available disks"
+
+lsblk -d -p -o NAME,SIZE,MODEL,TYPE
+
+echo
+read -rp "Enter target disk (example /dev/sda): " DISK
+
+[[ -b "$DISK" ]] ||
+    die "$DISK is not a valid block device."
+
+[[ "$(lsblk -dn -o TYPE "$DISK")" == "disk" ]] ||
+    die "$DISK is not a whole disk."
+
+case "$DISK" in
+    *nvme*|*mmcblk*)
+        ROOT_PART="${DISK}p1"
+        ;;
+    *)
+        ROOT_PART="${DISK}1"
+        ;;
+esac
+
+# ------------------------------------------------------------
+# Installation settings
+# ------------------------------------------------------------
+
+echo
+read -rp "Hostname [arch]: " HOSTNAME
+HOSTNAME="${HOSTNAME:-arch}"
+
+read -rp "Username [piplewis]: " USERNAME
+USERNAME="${USERNAME:-piplewis}"
+
+[[ "$HOSTNAME" =~ ^[a-zA-Z0-9][a-zA-Z0-9.-]*$ ]] ||
+    die "Invalid hostname."
+
+[[ "$USERNAME" =~ ^[a-z_][a-z0-9_-]*$ ]] ||
+    die "Invalid username."
+
+echo
+echo "============================================================"
+echo " INSTALLATION SUMMARY"
+echo "============================================================"
+echo
+echo " Target disk : $DISK"
+echo " Root        : $ROOT_PART"
+echo " Hostname    : $HOSTNAME"
+echo " Username    : $USERNAME"
+echo " Boot mode   : BIOS/MBR"
+echo
+echo " ALL DATA ON $DISK WILL BE DESTROYED."
+echo
+
+read -rp "Type ERASE to continue: " CONFIRM
+
+[[ "$CONFIRM" == "ERASE" ]] ||
+    die "Installation cancelled."
+
+# ------------------------------------------------------------
+# Prepare disk
+# ------------------------------------------------------------
+
+info "Preparing $DISK..."
+
+cleanup
+
+swapoff -a 2>/dev/null || true
+
+wipefs -af "$DISK"
+
+# One Linux partition occupying the disk.
+printf 'label: dos\n,,L,*\n' | sfdisk "$DISK"
+
+partprobe "$DISK"
+udevadm settle
+
+[[ -b "$ROOT_PART" ]] ||
+    die "Partition $ROOT_PART was not created."
+
+# ------------------------------------------------------------
+# Filesystem
+# ------------------------------------------------------------
+
+info "Formatting $ROOT_PART as ext4..."
+
+mkfs.ext4 -F "$ROOT_PART"
+
+info "Mounting $ROOT_PART..."
+
+mount "$ROOT_PART" "$MOUNTPOINT"
+
+# ------------------------------------------------------------
+# Install base system
+# ------------------------------------------------------------
+
+info "Installing Arch Linux..."
+
+pacstrap -K "$MOUNTPOINT" \
+    base \
+    linux \
+    linux-firmware \
+    intel-ucode \
+    grub \
+    networkmanager \
+    sudo \
+    git \
+    vim \
+    base-devel
+
+# ------------------------------------------------------------
+# fstab
+# ------------------------------------------------------------
+
+info "Generating fstab..."
+
+genfstab -U "$MOUNTPOINT" > "$MOUNTPOINT/etc/fstab"
+
+# ------------------------------------------------------------
+# Configure installed system
+# ------------------------------------------------------------
+
+info "Configuring installed system..."
+
+cat > "$MOUNTPOINT/root/pais-config.sh" <<CHROOT
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+ln -sf /usr/share/zoneinfo/Europe/London /etc/localtime
+hwclock --systohc
+
+sed -i 's/^#en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen
+
+echo "LANG=en_GB.UTF-8" > /etc/locale.conf
+echo "KEYMAP=uk" > /etc/vconsole.conf
+
+echo "$HOSTNAME" > /etc/hostname
+
+cat > /etc/hosts <<HOSTS
+127.0.0.1 localhost
+::1       localhost
+127.0.1.1 $HOSTNAME.localdomain $HOSTNAME
+HOSTS
+
+useradd -m -G wheel -s /bin/bash "$USERNAME"
+
+echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/wheel
+chmod 440 /etc/sudoers.d/wheel
+
+systemctl enable NetworkManager
+
+grub-install --target=i386-pc "$DISK"
+grub-mkconfig -o /boot/grub/grub.cfg
+
+mkinitcpio -P
+CHROOT
+
+chmod +x "$MOUNTPOINT/root/pais-config.sh"
+
+arch-chroot "$MOUNTPOINT" /root/pais-config.sh
+
+rm "$MOUNTPOINT/root/pais-config.sh"
+
+# ------------------------------------------------------------
+# Passwords
+# ------------------------------------------------------------
+
+echo
+info "Set the ROOT password"
+
+arch-chroot "$MOUNTPOINT" passwd
+
+echo
+info "Set the password for $USERNAME"
+
+arch-chroot "$MOUNTPOINT" passwd "$USERNAME"
+
+# ------------------------------------------------------------
+# Finished
+# ------------------------------------------------------------
+
+echo
+echo "============================================================"
+echo " PAIS BASE INSTALLATION COMPLETE"
+echo "============================================================"
+echo
+echo " Arch Linux       installed"
+echo " GRUB             installed"
+echo " NetworkManager   enabled"
+echo " Git              installed"
+echo " Vim              installed"
+echo " sudo             configured"
+echo
+echo " Hostname : $HOSTNAME"
+echo " User     : $USERNAME"
+echo
+echo "Next milestone: PAIS desktop installer."
+echo
+echo "You may now reboot."
+echo
